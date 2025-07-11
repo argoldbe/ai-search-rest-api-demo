@@ -1,0 +1,63 @@
+meta {
+  name: Create indexer sheet
+  type: http
+  seq: 5
+}
+
+put {
+  url: https://{{endpoint}}/indexers/{{indexName}}-indexer-excel?api-version={{apiVersion}}
+  body: json
+  auth: inherit
+}
+
+params:query {
+  api-version: {{apiVersion}}
+}
+
+body:json {
+  {
+    "description": "Indexer to index sheets / Excel documents",
+    "dataSourceName": "{{indexName}}-datasource",
+    "skillsetName": null,
+    "targetIndexName": "{{indexName}}-index",
+    "disabled": false,
+    "schedule": null,
+    "parameters": {
+      "batchSize": 1,
+      "maxFailedItems": -1,
+      "maxFailedItemsPerBatch": -1,
+      "configuration": {
+        "indexedFileNameExtensions": ".xlsx,.xlsm",
+        "failOnUnsupportedContentType": false,
+        "failOnUnprocessableDocument": false,
+        "indexStorageMetadataOnlyForOversizedDocuments": true
+      }
+    },
+    "fieldMappings": [
+      {
+        "sourceFieldName": "metadata_storage_name",
+        "targetFieldName": "title",
+        "mappingFunction": null
+      },
+      {
+        "sourceFieldName": "metadata_storage_path",
+        "targetFieldName": "transactionId",
+        "mappingFunction": {
+          "name": "extractTokenAtPosition",
+          "parameters": {
+            "delimiter": "/",
+            "position": 4
+          }
+        }
+      },
+      {
+        "sourceFieldName": "content",
+        "targetFieldName": "chunk",
+        "mappingFunction": null
+      }
+    ],
+    "outputFieldMappings": [],
+    "cache": null,
+    "encryptionKey": null
+  }
+}

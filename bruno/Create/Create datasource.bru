@@ -1,0 +1,33 @@
+meta {
+  name: Create datasource
+  type: http
+  seq: 1
+}
+
+put {
+  url: https://{{endpoint}}/datasources/{{indexName}}-datasource?api-version={{apiVersion}}
+  body: json
+  auth: inherit
+}
+
+params:query {
+  api-version: {{apiVersion}}
+}
+
+body:json {
+  {
+      "description": null,
+      "type": "azureblob",
+      "subtype": null,
+      "credentials": {
+          "connectionString": "ResourceId=/subscriptions/{{subscriptionId}}/resourceGroups/{{resourceGroupName}}/providers/Microsoft.Storage/storageAccounts/{{storageAccountName}};"
+      },
+      "container": {
+          "name": "{{containerName}}"
+      },
+      "dataChangeDetectionPolicy": null,
+      "dataDeletionDetectionPolicy": null,
+      "encryptionKey": null,
+      "identity": null
+  }
+}

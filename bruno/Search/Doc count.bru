@@ -1,0 +1,15 @@
+meta {
+  name: Doc count
+  type: http
+  seq: 4
+}
+
+get {
+  url: https://{{endpoint}}/indexes/{{indexName}}-index/docs/$count?api-version={{apiVersion}}
+  body: none
+  auth: inherit
+}
+
+params:query {
+  api-version: {{apiVersion}}
+}

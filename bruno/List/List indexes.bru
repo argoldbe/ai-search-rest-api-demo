@@ -1,0 +1,15 @@
+meta {
+  name: List indexes
+  type: http
+  seq: 2
+}
+
+get {
+  url: https://{{endpoint}}/indexes?api-version={{apiVersion}}
+  body: none
+  auth: inherit
+}
+
+params:query {
+  api-version: {{apiVersion}}
+}

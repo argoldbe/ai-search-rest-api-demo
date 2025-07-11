@@ -1,0 +1,29 @@
+meta {
+  name: Vector search
+  type: http
+  seq: 3
+}
+
+post {
+  url: https://{{endpoint}}/indexes/{{indexName}}-index/docs/search?api-version={{apiVersion}}
+  body: json
+  auth: inherit
+}
+
+params:query {
+  api-version: {{apiVersion}}
+}
+
+body:json {
+  {
+    "search": "*",
+    "vectorQueries": [
+      {
+        "kind": "text",
+        "text": "Can you give me the list of people who attested and have no conflict",
+        "k": 5,
+        "fields": "vector"
+      }
+    ]
+  }
+}

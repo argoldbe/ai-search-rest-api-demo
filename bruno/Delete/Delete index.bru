@@ -1,0 +1,15 @@
+meta {
+  name: Delete index
+  type: http
+  seq: 4
+}
+
+delete {
+  url: https://{{endpoint}}/indexes/{{indexName}}-index?api-version={{apiVersion}}
+  body: none
+  auth: inherit
+}
+
+params:query {
+  api-version: {{apiVersion}}
+}

@@ -1,0 +1,9 @@
+{
+  "version": "1",
+  "name": "ai-search-rest-api-demo",
+  "type": "collection",
+  "ignore": [
+    "node_modules",
+    ".git"
+  ]
+}

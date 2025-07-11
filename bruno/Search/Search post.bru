@@ -1,0 +1,21 @@
+meta {
+  name: Search post
+  type: http
+  seq: 2
+}
+
+post {
+  url: https://{{endpoint}}/indexes/{{indexName}}-index/docs/search?api-version={{apiVersion}}
+  body: json
+  auth: inherit
+}
+
+params:query {
+  api-version: {{apiVersion}}
+}
+
+body:json {
+  {
+    "search": "xlsx"
+  }
+}

@@ -1,0 +1,15 @@
+meta {
+  name: Delete indexer sheet
+  type: http
+  seq: 2
+}
+
+delete {
+  url: https://{{endpoint}}/indexers/{{indexName}}-indexer-excel?api-version={{apiVersion}}
+  body: none
+  auth: inherit
+}
+
+params:query {
+  api-version: {{apiVersion}}
+}

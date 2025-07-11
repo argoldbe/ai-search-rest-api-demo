@@ -1,0 +1,9 @@
+auth {
+  mode: apikey
+}
+
+auth:apikey {
+  key: api-key
+  value: {{process.env.AI_SEARCH_API_KEY}}
+  placement: header
+}

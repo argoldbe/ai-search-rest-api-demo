@@ -1,0 +1,15 @@
+meta {
+  name: Delete skillset
+  type: http
+  seq: 5
+}
+
+delete {
+  url: https://{{endpoint}}/skillsets/{{indexName}}-skillset?api-version={{apiVersion}}
+  body: none
+  auth: inherit
+}
+
+params:query {
+  api-version: {{apiVersion}}
+}

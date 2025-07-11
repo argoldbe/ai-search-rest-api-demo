@@ -1,0 +1,15 @@
+meta {
+  name: List indexers
+  type: http
+  seq: 4
+}
+
+get {
+  url: https://{{endpoint}}/indexers?api-version={{apiVersion}}
+  body: none
+  auth: inherit
+}
+
+params:query {
+  api-version: {{apiVersion}}
+}

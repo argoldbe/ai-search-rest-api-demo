@@ -1,0 +1,15 @@
+meta {
+  name: Delete datasource
+  type: http
+  seq: 3
+}
+
+delete {
+  url: https://{{endpoint}}/datasources/{{indexName}}-datasource?api-version={{apiVersion}}
+  body: none
+  auth: inherit
+}
+
+params:query {
+  api-version: {{apiVersion}}
+}

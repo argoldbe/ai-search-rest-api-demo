@@ -1,0 +1,58 @@
+meta {
+  name: Create indexer
+  type: http
+  seq: 4
+}
+
+put {
+  url: https://{{endpoint}}/indexers/{{indexName}}-indexer?api-version={{apiVersion}}
+  body: json
+  auth: inherit
+}
+
+params:query {
+  api-version: {{apiVersion}}
+}
+
+body:json {
+  {
+    "description": "Indexer to index .pdf,.docx,.msg,.eml documents and generate embeddings",
+    "dataSourceName": "{{indexName}}-datasource",
+    "skillsetName": "{{indexName}}-skillset",
+    "targetIndexName": "{{indexName}}-index",
+    "disabled": false,
+    "schedule": null,
+    "parameters": {
+      "batchSize": 1,
+      "maxFailedItems": -1,
+      "maxFailedItemsPerBatch": -1,
+      "configuration": {
+        "indexedFileNameExtensions": ".pdf,.docx,.msg,.eml",
+        "failOnUnsupportedContentType": false,
+        "failOnUnprocessableDocument": false,
+        "indexStorageMetadataOnlyForOversizedDocuments": true
+      }
+    },
+    "fieldMappings": [
+      {
+        "sourceFieldName": "metadata_storage_name",
+        "targetFieldName": "title",
+        "mappingFunction": null
+      },
+      {
+        "sourceFieldName": "metadata_storage_path",
+        "targetFieldName": "transactionId",
+        "mappingFunction": {
+          "name": "extractTokenAtPosition",
+          "parameters": {
+            "delimiter": "/",
+            "position": 4
+          }
+        }
+      }
+    ],
+    "outputFieldMappings": [],
+    "cache": null,
+    "encryptionKey": null
+  }
+}

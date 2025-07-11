@@ -1,0 +1,15 @@
+meta {
+  name: List datasources
+  type: http
+  seq: 1
+}
+
+get {
+  url: https://{{endpoint}}/datasources?api-version={{apiVersion}}
+  body: none
+  auth: inherit
+}
+
+params:query {
+  api-version: {{apiVersion}}
+}

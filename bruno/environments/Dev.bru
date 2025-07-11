@@ -1,0 +1,12 @@
+vars {
+  apiVersion: 2024-05-01-preview
+  endpoint: {{process.env.AI_SEARCH_ENDPOINT}}
+  indexName: package
+  resourceGroupName: <Resource Group Name>
+  storageAccountName: <Storage Account Name>
+  containerName: <Storage Container Name>
+  subscriptionId: {{process.env.SUBSCRIPTION_ID}}
+  vectorizerApiKey: {{process.env.AZURE_OPEN_AI_API_KEY}}
+  vectorizerDeploymentId: text-embedding-ada-002
+  vectorizerResourceUri: {{process.env.AZURE_OPEN_AI_ENDPOINT}}
+}
